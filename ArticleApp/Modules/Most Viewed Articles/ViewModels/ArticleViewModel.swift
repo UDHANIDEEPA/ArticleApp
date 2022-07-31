@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Alamofire
 
 class ArticleListViewModel {
     private(set) var articles: [ArticleViewModel] = []
@@ -79,4 +80,34 @@ extension ArticleViewModel {
     var publishDate: String {
         return self.article.publishedDate
     }
+    
+    var description: String {
+        return self.article.abstract
+    }
+    
+    var updatedDate: String {
+        return self.article.updated
+    }
+    
+    var thumbnailImageUrl: String {
+        if self.article.media.count > 0 {
+            let media = self.article.media[0]
+            if media.mediaMetadata.count > 0 {
+                return media.mediaMetadata[0].url
+            }
+        }
+        return ""
+    }
+    
+    
+    var descriptionImageUrl: String {
+        if self.article.media.count > 0 {
+            let media = self.article.media[0]
+            if media.mediaMetadata.count > 0 {
+                return media.mediaMetadata[2].url
+            }
+        }
+        return ""
+    }
+    
 }

@@ -9,6 +9,7 @@ import Foundation
 
 struct ArticleApi: APIRouteable {
     
+    
     var path: String {
         "viewed/7.json?api-key=\(Environment.shared.articlesApiKey)"
     }
@@ -19,9 +20,14 @@ struct ArticleApi: APIRouteable {
         .get
     }
     
-    func parse (data: Data) throws -> Response {
-        let response = try JSONDecoder().decode(Response.self, from: data)
-        return response
+    func parse (data: Data) throws -> APiResponse {
+        do {
+            let parsedData = try JSONDecoder().decode(APiResponse.self, from: data)
+            return parsedData
+        }
+        catch {
+            throw error
+        }
     }
   
 }

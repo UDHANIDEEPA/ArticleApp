@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+import AlamofireImage
 import UIKit
 
 extension UIImageView
@@ -40,4 +40,16 @@ extension UIImageView
             self.image = UIImage(named: "default")
         }
     }
+}
+
+extension UIImageView {
+    
+    func downloadImage(url: String){
+        if let fileUrl = URL(string: url) {
+    
+            self.af_setImage(withURL: fileUrl, placeholderImage: UIImage(named: "default.png"))
+        }
+            
+    }
+    
 }

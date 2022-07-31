@@ -24,6 +24,6 @@
 	<key>ARTICLES_MOSTVIEWED_API_KEY</key>
 	<string>pJ8GW1ReALVUZorvMuSTAQY8C60mMnPX</string>
 	<key>CFBundleIdentifier</key>
-	<string></string>
+	<string>com.vanshika.ArticleApp</string>
 </dict>
 </plist>

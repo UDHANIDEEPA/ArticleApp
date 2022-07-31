@@ -23,11 +23,19 @@ extension APIRouteable {
     var baseURL: String { return K.URLs.baseURL }
     // MARK: - URLRequestConvertible
     func asURLRequest() throws -> URLRequest {
-        let url = try baseURL.asURL().appendingPathComponent(path)
-        var urlRequest = URLRequest(url: url)
-        urlRequest.httpMethod = method.rawValue
-        // return try encoding.encode(urlRequest, with: parameters)
-        return urlRequest
+        //let url = try baseURL.asURL().appendingPathComponent(path)
+        let url = URL(string: baseURL)
+        
+        if let urlWithPath = (url.flatMap { URL(string: $0.absoluteString + path) }) {
+           
+            var urlRequest = URLRequest(url: urlWithPath)
+            urlRequest.httpMethod = method.rawValue
+            // return try encoding.encode(urlRequest, with: parameters)
+            return urlRequest
+        }
+        
+        return URLRequest(url: url!)
+
     }
     
 }
